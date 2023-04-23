@@ -15,7 +15,12 @@ void bubble_sort(int *array, size_t size)
 	size_t tmp;
 	int tswap;
 
-	/*make sure the loop comes back until entire list is sorted*/
+	if (size < 2)
+	{
+		return;
+	}
+
+	/*make sure the loop checks every number until entire list is sorted*/
 	for (i = 0; i < size; i++)
 	{
 		tswap = 0;
