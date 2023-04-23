@@ -10,6 +10,7 @@ void bubble_sort(int *array, size_t size)
     size_t i;
     size_t j;
     size_t tmp;
+    int tswap = 0;
 
     /*make sure the loop comes back until entire list is sorted*/
     for (i = 0; i < size; i++)
@@ -23,8 +24,13 @@ void bubble_sort(int *array, size_t size)
                 tmp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = tmp;
+                tswap = 1;
                 print_array(array, size);
             }
+        }
+        if (!tswap)
+        {
+            break;
         }
     }
 }
