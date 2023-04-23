@@ -21,11 +21,11 @@ void bubble_sort(int *array, size_t size)
 	}
 
 	/*make sure the loop checks every number until entire list is sorted*/
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size - 1; i++)
 	{
 		tswap = 0;
 		/*iterate through arra swapping items*/
-		for (j = 0; j < size; j++)
+		for (j = 0; j < size - i - 1; j++)
 		/* swap items if a number is greater than the next*/
 		{
 			if (array[j] > array[j + 1])
