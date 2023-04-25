@@ -10,31 +10,33 @@
 
 void quick_sort(int *array, size_t size)
 {
-    int pivot;
-    int i;
-    int j;
+	int pivot;
+	int i;
+	int j;
 
-    if (size < 2)
-        return;
+	if (size < 2)
+		return;
 
-    pivot = array[size / 2];
+	pivot = array[size / 2];
 
-    for (i = 0, j = size - 1;; i++, j--)
-    {
-        while (array[i] < pivot)
-            i++;
-        while (array[j] > pivot)
-            j--;
+	for (i = 0, j = size - 1;; i++, j--)
+	{
+		while (array[i] < pivot)
+			i++;
+		while (array[j] > pivot)
+			j--;
 
-        if (i >= j)
-            break;
+		if (i >= j)
+			break;
 
-        swap(&array[i], &array[j]);
-    }
+		swap(&array[i], &array[j]);
+		print_array(array, size);
+	}
 
-    print_array(array, size);
-    quick_sort(array, i);
-    quick_sort(array + i, size - i);
+	quick_sort(array, i);
+	print_array(array, size);
+	quick_sort(array + i, size - i);
+	print_array(array, size);
 }
 
 /**
@@ -46,7 +48,7 @@ void quick_sort(int *array, size_t size)
  */
 void swap(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
