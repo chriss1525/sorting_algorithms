@@ -7,30 +7,30 @@
  */
 void selection_sort(int *array, size_t size)
 {
-    int i;
-    int j;
-    int min_idx;
+	int i;
+	int j;
+	int min_idx;
 
-    if (array == NULL || size == 0)
-        return;
+	if (array == NULL || size == 0)
+		return;
 
-    for (i = 0; i < (int)(size - 1); i++)
-    {
-        min_idx = i;
-        for (j = i + 1; j < (int)(size); j++)
-        {
-            if (array[j] < array[min_idx])
-                min_idx = j;
-        }
-        if (min_idx != i)
-        {
-            if (array[min_idx] != array[i])
-            {
-                swap(&array[min_idx], &array[i]);
-                print_array(array, size);
-            }
-        }
-    }
+	for (i = 0; i < (int)(size - 1); i++)
+	{
+		min_idx = i;
+		for (j = i + 1; j < (int)(size); j++)
+		{
+			if (array[j] < array[min_idx])
+				min_idx = j;
+		}
+		if (min_idx != i)
+		{
+			if (array[min_idx] != array[i])
+			{
+				swap(&array[min_idx], &array[i]);
+				print_array(array, size);
+			}
+		}
+	}
 }
 
 /**
@@ -42,7 +42,7 @@ void selection_sort(int *array, size_t size)
  */
 void swap(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }

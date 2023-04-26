@@ -33,15 +33,19 @@ void quick_sort(int *array, size_t size)
 		print_array(array, size);
 	}
 
-	if (i == size / 2 && j == size / 2 - 1)
+	if (i == (int)(size / 2) && j == (int)(size / 2 - 1))
 	{
 		quick_sort(array, size / 2);
+		print_array(array, size);
 		quick_sort(array + size / 2, size / 2);
+		print_array(array, size);
 	}
 	else
 	{
 		quick_sort(array, i);
+		print_array(array, size);
 		quick_sort(array + i, size - i);
+		print_array(array, size);
 	}
 }
 
