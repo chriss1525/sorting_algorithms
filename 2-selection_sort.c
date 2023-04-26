@@ -11,6 +11,9 @@ void selection_sort(int *array, size_t size)
     int j;
     int min_idx;
 
+    if (array == NULL || size == 0)
+        return;
+
     for (i = 0; i < (int)(size - 1); i++)
     {
         min_idx = i;
@@ -19,18 +22,14 @@ void selection_sort(int *array, size_t size)
             if (array[j] < array[min_idx])
                 min_idx = j;
         }
-        swap(&array[min_idx], &array[i]);
-        print_array(array, size);
-    }
-    if (i == size / 2 && j == size / 2 - 1)
-    {
-        quick_sort(array, size / 2);
-        quick_sort(array + size / 2, size / 2);
-    }
-    else
-    {
-        quick_sort(array, i);
-        quick_sort(array + i, size - i);
+        if (min_idx != i)
+        {
+            if (array[min_idx] != array[i])
+            {
+                swap(&array[min_idx], &array[i]);
+                print_array(array, size);
+            }
+        }
     }
 }
 
