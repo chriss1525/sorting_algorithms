@@ -22,6 +22,16 @@ void selection_sort(int *array, size_t size)
         swap(&array[min_idx], &array[i]);
         print_array(array, size);
     }
+    if (i == size / 2 && j == size / 2 - 1)
+    {
+        quick_sort(array, size / 2);
+        quick_sort(array + size / 2, size / 2);
+    }
+    else
+    {
+        quick_sort(array, i);
+        quick_sort(array + i, size - i);
+    }
 }
 
 /**
