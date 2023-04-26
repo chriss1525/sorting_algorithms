@@ -8,87 +8,72 @@
  */
 void cocktail_sort_list(listint_t **list)
 {
-    int swapped = 1;
-    listint_t *start = *list, *end = NULL, *curr;
+	int swapped = 1;
+	listint_t *start = *list;
+	listint_t *end = NULL;
+	listint_t *p = NULL;
 
-    if (list == NULL || *list == NULL || (*list)->next == NULL)
-        return;
+	while (swapped)
+	{
+		swapped = 0;
+		p = start;
 
-    /* Get the last node in the list */
-    end = *list;
-    while (end->next != NULL)
-        end = end->next;
+		while (p->next != end)
+		{
+			if (p->n > p->next->n)
+			{
+				/* Swap the nodes */
+				if (p->prev)
+					p->prev->next = p->next;
+				else
+					*list = p->next;
+				p->next->prev = p->prev;
+				p->prev = p->next;
+				p->next = p->next->next;
+				p->prev->next = p;
+				if (p->next)
+					p->next->prev = p;
+				/* Print the list after each swap */
+				print_list(*list);
+				swapped = 1;
+			}
+			else
+			{
+				p = p->next;
+			}
+		}
+		end = p;
 
-    while (swapped)
-    {
-        swapped = 0;
+		if (!swapped)
+			break;
 
-        /* Pass from start to end */
-        curr = start;
-        while (curr != end)
-        {
-            if (curr->n > curr->next->n)
-            {
-                swap_nodes(list, curr, curr->next);
-                swapped = 1;
-            }
-            else
-            {
-                curr = curr->next;
-            }
-        }
-        end = curr;
+		swapped = 0;
+		p = end;
 
-        if (!swapped)
-            break;
-
-        swapped = 0;
-
-        /* Pass from end to start */
-        curr = end->prev;
-        while (curr != start->prev)
-        {
-            if (curr->n < curr->prev->n)
-            {
-                swap_nodes(list, curr->prev, curr);
-                swapped = 1;
-            }
-            else
-            {
-                curr = curr->prev;
-            }
-        }
-        start = curr->next;
-    }
-}
-
-/**
- * swap_nodes - swaps nodes
- * @list: head node
- * @a: node a
- * @b: node b
- * Return: nothing
- */
-
-void swap_nodes(listint_t **list, listint_t *a, listint_t *b)
-{
-
-    listint_t *prev_a = a->prev, *next_a = a->next, *prev_b = b->prev, *next_b = b->next;
-
-    if (a == NULL || b == NULL)
-        return;
-    if (prev_a != NULL)
-        prev_a->next = b;
-    if (next_b != NULL)
-        next_b->prev = a;
-
-    a->prev = prev_b;
-    b->next = next_a;
-    b->prev = prev_a;
-    a->next = next_b;
-
-    if (*list == a)
-        *list = b;
-    else if (*list == b)
-        *list = a;
+		while (p->prev != start)
+		{
+			if (p->n < p->prev->n)
+			{
+				/* Swap the nodes */
+				if (p->next)
+					p->next->prev = p->prev;
+				else
+					end = p->prev;
+				p->prev->next = p->next;
+				p->next = p->prev;
+				p->prev = p->prev->prev;
+				p->next->prev = p;
+				if (p->prev)
+					p->prev->next = p;
+				/* Print the list after each swap */
+				print_list(*list);
+				swapped = 1;
+			}
+			else
+			{
+				p = p->prev;
+			}
+		}
+		start = p;
+	}
 }
